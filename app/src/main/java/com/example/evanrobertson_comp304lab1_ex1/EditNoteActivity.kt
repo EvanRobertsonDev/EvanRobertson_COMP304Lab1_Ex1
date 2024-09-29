@@ -55,6 +55,7 @@ class EditNoteActivity : ComponentActivity()  {
 @Composable
 fun EditNoteLayout(note: Note, onSaveClick : (title : String, content : String) -> Unit) {
 
+    //Setup title and content variables using passed in note title and note content
     var title by remember { mutableStateOf(note.title) }
     var content by remember { mutableStateOf(note.content) }
 
@@ -66,7 +67,10 @@ fun EditNoteLayout(note: Note, onSaveClick : (title : String, content : String) 
     ) {
         //Title field
         TextField(
+            //Populate field with title
             value = title,
+
+            //Update title to entered text
             onValueChange = { title = it },
             label = { Text("Title") },
             modifier = Modifier.fillMaxWidth()
@@ -76,7 +80,10 @@ fun EditNoteLayout(note: Note, onSaveClick : (title : String, content : String) 
 
         //Content field
         TextField(
+            //Populate field with content
             value = content,
+
+            //Update content to entered text
             onValueChange = { content = it },
             label = { Text("Content") },
             modifier = Modifier.fillMaxWidth()

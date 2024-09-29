@@ -57,6 +57,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             //Home Page
             HomeLayout(
+                //Pass in notes list and event callbacks
+
                 //Get all notes in global list
                 notes = NotesRepository.notes,
 
@@ -84,7 +86,6 @@ class MainActivity : ComponentActivity() {
      */
     @Composable
     fun HomeLayout(
-        //Pass in notes and event callbacks
         notes: List<Note>,
         onNoteClick: (note: Note) -> Unit,
         onCreateNoteClick: () -> Unit
@@ -110,6 +111,7 @@ class MainActivity : ComponentActivity() {
                         .fillMaxWidth()
                         .background(Color.White)
                         .padding(10.dp)
+                        //On Click event using callback
                         .clickable(onClick = { onNoteClick(note) })
                 ) {
                     Column(
@@ -118,10 +120,12 @@ class MainActivity : ComponentActivity() {
                             .padding(16.dp),
                         verticalArrangement = Arrangement.SpaceEvenly
                     ) {
+                        //Title text
                         Text(
                             text = note.title,
                             fontSize = 30.sp
                         )
+                        //Truncated content text
                         Text(
                             text = note.content,
                             fontSize = 15.sp
@@ -146,19 +150,21 @@ class MainActivity : ComponentActivity() {
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             FloatingActionButton(
+                //On Click event
                 onClick = {
+                    //Callback
                     onCreateNoteClick()
                 },
                 modifier = Modifier
                     .background(Color.Transparent)
                     .padding(10.dp)
             ) {
+                //Button Icon
                 Icon(
                     modifier = Modifier
                         .size(50.dp),
                     imageVector = Icons.Outlined.AddCircle,
                     contentDescription = "Create Note",
-
                 )
             }
         }

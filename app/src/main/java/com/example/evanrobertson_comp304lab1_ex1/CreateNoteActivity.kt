@@ -49,6 +49,7 @@ class CreateNoteActivity : ComponentActivity() {
  */
 @Composable
 fun CreateNoteLayout(onSaveClick: (title : String, content : String) -> Unit) {
+    //Set title and content variables to empty string until text is entered
     var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
 
@@ -61,21 +62,21 @@ fun CreateNoteLayout(onSaveClick: (title : String, content : String) -> Unit) {
         //Title field
         TextField(
             value = title,
+            //Update title with entered text
             onValueChange = { title = it },
             label = { Text("Title") },
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(16.dp))
-
         //Content field
         TextField(
             value = content,
+            //Update content with entered text
             onValueChange = { content = it },
             label = { Text("Content") },
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(16.dp))
-
         //Save button
         Button(onClick = { onSaveClick(title, content) }) {
             Text("Save")
